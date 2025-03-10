@@ -65,6 +65,22 @@ export default function Projects() {
         { name: "useReducer", icon: "/images/stack/react.svg" },
       ],
     },
+    {
+      title: "Brainwawe",
+      description:
+        "Website for AI chat bot that can help you with your productivy",
+      image: "/images/brainwawe.png", // Project screenshot
+      url: "https://brainwawe-one.vercel.app/",
+
+      stack: [
+        { name: "React", icon: "/images/stack/react.svg" },
+        { name: "Next.js", icon: "/images/stack/nextjs.svg" },
+        { name: "Tailwind CSS", icon: "/images/stack/tailwindcss.svg" },
+        { name: "react-just-parallax", icon: "/images/stack/react.svg" },
+        { name: "react-router-dom", icon: "/images/stack/reactrouter.svg" },
+        { name: "scroll-lock", icon: "/images/stack/react.svg" },
+      ],
+    },
   ];
 
   // State for active project (can be used for animations or focus)
