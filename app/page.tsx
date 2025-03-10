@@ -1,4 +1,5 @@
 import ContactButtons from "./components/ContactButtons";
+import Projects from "./components/Projects";
 import SimplePassionSection from "./components/SimplePassionSection";
 import TypewriterClient from "./components/TypewriterClient";
 
@@ -6,7 +7,7 @@ export default function Page() {
   return (
     <main className="overflow-x-hidden">
       <section className="flex p-4 text-center flex-col items-center justify-center min-h-[80vh]">
-        {/* Reduced min-height from min-h-screen to min-h-[80vh] */}
+        {/* Hero section content */}
         <h1 className="text-2xl lg:text-4xl font-bold bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
           Transforming Ideas into Interactive Web Solutions
         </h1>
@@ -21,7 +22,12 @@ export default function Page() {
         <TypewriterClient />
         <ContactButtons />
       </section>
+
+      {/* Passion section */}
       <SimplePassionSection />
+
+      {/* Projects section */}
+      <Projects />
     </main>
   );
 }
