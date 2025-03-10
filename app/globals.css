@@ -56,33 +56,3 @@ html.disable-scroll {
 .section-spacer-lg {
   margin-top: -15vh;
 }
-
-/* Header styles */
-header {
-  pointer-events: none; /* Make header container not block interactions */
-}
-
-header > div,
-header nav,
-header button,
-header svg {
-  pointer-events: auto; /* But allow interactions with elements inside header */
-}
-
-/* Improve header element transitions */
-header button {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Mobile header improvements */
-@media (max-width: 640px) {
-  header .bg-\[\#0a0a0a\]\/60 {
-    margin: 0 auto; /* Ensure center alignment on mobile */
-  }
-
-  header button {
-    font-size: 0.75rem; /* Smaller text on very small screens */
-    padding: 0.25rem 0.5rem; /* Smaller padding on mobile */
-  }
-}
