@@ -1,58 +1,3 @@
-// "use client";
-
-// // Simple data for the passion sections
-// const PASSION_SECTIONS = [
-//   {
-//     id: "experience",
-//     title: "Building Digital Experiences",
-//     gradient: "from-blue-600 to-indigo-600",
-//     content:
-//       "My passion for web development began with curiosity about how websites work. Today, I'm dedicated to creating intuitive digital experiences that solve real problems.",
-//   },
-//   {
-//     id: "learning",
-//     title: "Continuous Learning",
-//     gradient: "from-indigo-600 to-purple-600",
-//     content:
-//       "Technology evolves rapidly. I devote time each day to learn new tools and techniques, experimenting with emerging frameworks to stay at the cutting edge.",
-//   },
-//   {
-//     id: "problem-solving",
-//     title: "Problem Solving",
-//     gradient: "from-purple-600 to-pink-600",
-//     content:
-//       "I thrive on solving complex challenges. Whether optimizing performance or improving accessibility, I turn obstacles into opportunities to grow.",
-//   },
-// ];
-
-// function SimplePassionSection() {
-//   return (
-//     <div className="py-12 bg-[#0A0A0A]">
-//       {PASSION_SECTIONS.map((section) => (
-//         <section
-//           key={section.id}
-//           className="flex flex-col  items-center justify-center py-16 px-4 "
-//         >
-//           <h2
-//             className={`text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r ${section.gradient} bg-clip-text text-transparent`}
-//           >
-//             {section.title}
-//           </h2>
-//           <p className="max-w-lg mt-4 lg:text-2xl text-lg text-gray-200 text-center">
-//             {section.content}
-//           </p>
-//         </section>
-//       ))}
-
-//       {/* Optional indicator showing where to add more content */}
-//       <div className="w-full flex justify-center py-8">
-//         <span className="w-2 h-2 rounded-full bg-gray-700"></span>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default SimplePassionSection;
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -182,7 +127,7 @@ function SimplePassionSection() {
   return (
     <div
       ref={sectionRef}
-      className="h-screen bg-[#0A0A0A] relative overflow-hidden"
+      className="h-screen bg-[#0A0A0A] relative overflow-hidden mt-[-10vh]"
     >
       {/* Side Navigation Dots */}
       <div className="fixed right-8 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-4">
@@ -204,7 +149,7 @@ function SimplePassionSection() {
       </div>
 
       {/* Stacked sections */}
-      <div className="h-full relative text-center">
+      <div className="h-screen relative text-center">
         {PASSION_SECTIONS.map((section, index) => (
           <section
             key={section.id}

@@ -43,3 +43,16 @@ html.no-scroll {
 html.disable-scroll {
   overflow: hidden;
 }
+
+/* Add global spacing utilities */
+.section-spacer-sm {
+  margin-top: -5vh;
+}
+
+.section-spacer-md {
+  margin-top: -10vh;
+}
+
+.section-spacer-lg {
+  margin-top: -15vh;
+}
