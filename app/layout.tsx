@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Peter Hajdu - Web Developer",
-  description: "Portfolio of Peter Hajdu - FullStack Developer",
+  title: "Peter Hajdu | Full-Stack Developer",
+  description: "Portfolio website showcasing my projects and skills",
 };
 
 export default function RootLayout({
