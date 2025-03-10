@@ -61,8 +61,8 @@ function SimplePassionSection() {
     // Create scroll trigger for the pinned section
     const scrollTrigger = ScrollTrigger.create({
       trigger: sectionRef.current,
-      start: "top top",
-      end: `+=${PASSION_SECTIONS.length * 100}%`,
+      start: "top top+=100", // Start pinning 100px from top of viewport
+      end: `+=${PASSION_SECTIONS.length * 60}%`, // Reduced scroll distance
       pin: true,
       pinSpacing: true,
       scrub: true,
@@ -114,8 +114,8 @@ function SimplePassionSection() {
         sectionRef.current.getBoundingClientRect().top + window.scrollY;
       const offset =
         (index / PASSION_SECTIONS.length) *
-        window.innerHeight *
-        PASSION_SECTIONS.length;
+        (sectionRef.current.offsetHeight * PASSION_SECTIONS.length) *
+        0.6; // Adjusted for smaller section
 
       window.scrollTo({
         top: sectionTop + offset,
@@ -127,7 +127,7 @@ function SimplePassionSection() {
   return (
     <div
       ref={sectionRef}
-      className="h-screen bg-[#0A0A0A] relative overflow-hidden mt-[-10vh]"
+      className="h-[60vh] bg-[#0A0A0A] relative overflow-hidden" // Changed from h-screen to h-[60vh]
     >
       {/* Side Navigation Dots */}
       <div className="fixed right-8 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-4">
@@ -149,7 +149,9 @@ function SimplePassionSection() {
       </div>
 
       {/* Stacked sections */}
-      <div className="h-screen relative text-center">
+      <div className="h-[60vh] relative text-center">
+        {" "}
+        {/* Changed from h-screen to h-[60vh] */}
         {PASSION_SECTIONS.map((section, index) => (
           <section
             key={section.id}
@@ -159,11 +161,11 @@ function SimplePassionSection() {
             className="absolute inset-0 flex flex-col items-center justify-center px-4 opacity-0 transition-opacity"
           >
             <h2
-              className={`text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r ${section.gradient} bg-clip-text text-transparent`}
+              className={`text-2xl lg:text-5xl font-bold mb-4 bg-gradient-to-r ${section.gradient} bg-clip-text text-transparent`}
             >
               {section.title}
             </h2>
-            <p className="max-w-lg mt-4 lg:text-2xl text-lg text-gray-200 text-center">
+            <p className="max-w-lg mt-3 lg:text-2xl text-base text-gray-200 text-center">
               {section.content}
             </p>
           </section>
