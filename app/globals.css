@@ -29,3 +29,39 @@ body {
   overflow: hidden;
   width: 100%;
 }
+
+/* Add this to the globals.css file */
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+html.has-scroll-dragging {
+  user-select: none;
+}
+
+.has-scroll-smooth body {
+  overflow: hidden;
+}
+
+/* For elements that should remain sticky */
+[data-scroll-sticky] {
+  position: sticky; /* Keep standard CSS sticky as a fallback */
+  top: 0;
+}
+
+/* Add these animation classes */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease forwards;
+}
