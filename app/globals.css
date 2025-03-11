@@ -22,15 +22,6 @@ body {
   overflow-y: auto; /* Allow vertical scrolling */
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-/* Class to handle no-scroll during transitions */
-html.no-scroll {
-  overflow: hidden;
-}
-
 /* For Safari to prevent bounce */
 .overflow-hidden-ios {
   height: 100%;
@@ -38,10 +29,3 @@ html.no-scroll {
   overflow: hidden;
   width: 100%;
 }
-
-/* Make sure the page doesn't jump when scrolling is controlled */
-html.disable-scroll {
-  overflow: hidden;
-}
-
-/* Add global spacing utilities */
