@@ -43,7 +43,7 @@ export default function Projects() {
       description:
         "My personal portfolio showcasing projects and skills with interactive elements and animations.",
       image: "/images/portfolio.png",
-      url: "https://peterhajdu.dev",
+      url: "https://hajdupeter.com",
       stack: [
         { name: "React", icon: "/images/stack/react.svg" },
         { name: "Next.js", icon: "/images/stack/nextjs.svg" },
