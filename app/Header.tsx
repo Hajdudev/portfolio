@@ -11,6 +11,7 @@ function Header() {
     () => [
       { name: "Home", id: "hero" },
       { name: "Projects", id: "projects" },
+      { name: "About", id: "about" },
       { name: "Tech Stack", id: "tech-stack" },
       { name: "Contact", id: "contact" },
     ],
@@ -41,28 +42,62 @@ function Header() {
   // Track scroll position to update active nav item
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100; // Offset to trigger slightly before section top
+      // Get viewport height and scroll position
+      const viewportHeight = window.innerHeight;
 
-      // Find the section that's currently in view
+      // Calculate which section is most visible in the viewport
+      let maxVisibleSection = 0;
+      let maxVisibleArea = 0;
+
       const sections = navItems.map((item) => document.getElementById(item.id));
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActive(i);
-          break;
+      sections.forEach((section, index) => {
+        if (!section) return;
+
+        const rect = section.getBoundingClientRect();
+        // Calculate how much of the section is visible in the viewport
+        const visibleTop = Math.max(0, rect.top);
+        const visibleBottom = Math.min(viewportHeight, rect.bottom);
+        const visibleArea = Math.max(0, visibleBottom - visibleTop);
+
+        // Add a bias for sections at the top of the page
+        if (rect.top < 100 && index === 0) {
+          // Boost the home section when near the top
+          const topBoost = 200;
+          if (visibleArea + topBoost > maxVisibleArea) {
+            maxVisibleArea = visibleArea + topBoost;
+            maxVisibleSection = index;
+          }
+        } else if (visibleArea > maxVisibleArea) {
+          maxVisibleArea = visibleArea;
+          maxVisibleSection = index;
         }
+      });
+
+      setActive(maxVisibleSection);
+    };
+
+    // Use requestAnimationFrame for smoother performance
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    // Add scroll event listener
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     // Initial check on page load
     handleScroll();
 
     // Clean up
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, [navItems]);
 
   return (

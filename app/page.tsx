@@ -5,6 +5,7 @@ import Projects from "./components/Projects";
 import TechStack from "./components/TechStack";
 import TypewriterClient from "./components/TypewriterClient";
 import Contact from "./components/Contact"; // Import the new Contact component
+import About from "./components/About";
 
 export default function Page() {
   useEffect(() => {
@@ -57,6 +58,7 @@ export default function Page() {
 
         {/* Projects section already has the correct id */}
         <Projects />
+        <About />
 
         {/* TechStack already has correct id */}
         <TechStack />
