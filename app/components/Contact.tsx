@@ -1,41 +1,85 @@
 "use client";
 
-import { useState, useRef, FormEvent, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
-interface FormState {
-  name: string;
-  email: string;
-  message: string;
-}
-
-enum SubmissionStatus {
-  IDLE,
-  SUBMITTING,
-  SUCCESS,
-  ERROR,
-}
-
 export default function Contact() {
-  const formRef = useRef<HTMLFormElement>(null);
-  const [formState, setFormState] = useState<FormState>({
+  const [isVisible, setIsVisible] = useState(false);
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState<SubmissionStatus>(SubmissionStatus.IDLE);
-  const [errors, setErrors] = useState<Partial<FormState>>({});
-  const [charCount, setCharCount] = useState<number>(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({
+    success: false,
+    error: false,
+    message: "",
+  });
 
-  const MAX_MESSAGE_LENGTH = 500;
+  // Handle form input changes
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-  // Update character count when message changes
-  useEffect(() => {
-    setCharCount(formState.message.length);
-  }, [formState.message]);
+  // Web3Forms submission
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ success: false, error: false, message: "" });
 
-  // Intersection Observer to handle scroll animations instead of Framer Motion
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "48be0597-3e7f-4199-a1bb-3012a404251c", // Replace with your actual key
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: "New contact from portfolio website",
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus({
+          success: true,
+          error: false,
+          message: "Message sent successfully! I'll get back to you soon.",
+        });
+        // Reset form
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setSubmitStatus({
+          success: false,
+          error: true,
+          message: result.message || "Something went wrong. Please try again.",
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        success: false,
+        error: true,
+        message: "An error occurred. Please try again later.",
+      });
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  // Intersection Observer to handle scroll animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -60,103 +104,6 @@ export default function Contact() {
     };
   }, []);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-
-    // If it's the message field, enforce character limit
-    if (name === "message" && value.length > MAX_MESSAGE_LENGTH) {
-      return;
-    }
-
-    setFormState((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    // Clear error for this field when user types
-    if (errors[name as keyof FormState]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
-    }
-  };
-
-  const validateForm = (): boolean => {
-    const newErrors: Partial<FormState> = {};
-
-    if (!formState.name.trim()) {
-      newErrors.name = "Name is required";
-    }
-
-    if (!formState.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)) {
-      newErrors.email = "Please enter a valid email address";
-    }
-
-    if (!formState.message.trim()) {
-      newErrors.message = "Message is required";
-    } else if (formState.message.length < 10) {
-      newErrors.message = "Message must be at least 10 characters";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    if (!validateForm()) return;
-
-    setStatus(SubmissionStatus.SUBMITTING);
-
-    try {
-      console.log("Submitting form data:", {
-        ...formState,
-        message: formState.message.substring(0, 20) + "...",
-      });
-
-      // Simple fetch to our API route
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formState),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.error("Server error:", data);
-        throw new Error(data.error || "Network response was not ok");
-      }
-
-      console.log("Success response:", data);
-      setStatus(SubmissionStatus.SUCCESS);
-
-      // Reset form
-      setFormState({ name: "", email: "", message: "" });
-
-      // Reset status after 5 seconds
-      setTimeout(() => {
-        setStatus(SubmissionStatus.IDLE);
-      }, 5000);
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      setStatus(SubmissionStatus.ERROR);
-
-      // Reset status after 5 seconds
-      setTimeout(() => {
-        setStatus(SubmissionStatus.IDLE);
-      }, 5000);
-    }
-  };
-
   return (
     <section
       id="contact"
@@ -177,11 +124,11 @@ export default function Contact() {
           }`}
         >
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent mb-4">
-            Let s Connect
+            Let&#39;s Connect
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-            Have a question or want to work together? Drop me a message and I ll
-            get back to you soon!
+            Have a question or want to work together? Drop me a message and
+            I&#39;ll get back to you soon!
           </p>
         </div>
 
@@ -195,10 +142,21 @@ export default function Contact() {
             }`}
           >
             <form
-              ref={formRef}
               onSubmit={handleSubmit}
               className="bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl border border-gray-800 shadow-lg"
             >
+              {submitStatus.success && (
+                <div className="mb-6 p-4 bg-green-900/50 border border-green-600 rounded-lg text-green-200">
+                  {submitStatus.message}
+                </div>
+              )}
+
+              {submitStatus.error && (
+                <div className="mb-6 p-4 bg-red-900/50 border border-red-600 rounded-lg text-red-200">
+                  {submitStatus.message}
+                </div>
+              )}
+
               <div className="mb-6">
                 <label
                   htmlFor="name"
@@ -211,16 +169,12 @@ export default function Contact() {
                     type="text"
                     id="name"
                     name="name"
-                    value={formState.name}
+                    value={formData.name}
                     onChange={handleChange}
-                    className={`w-full bg-gray-800/50 border ${
-                      errors.name ? "border-red-500" : "border-gray-700"
-                    } rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all`}
+                    required
+                    className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                     placeholder="Your name"
                   />
-                  {errors.name && (
-                    <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-                  )}
                 </div>
               </div>
 
@@ -236,16 +190,12 @@ export default function Contact() {
                     type="email"
                     id="email"
                     name="email"
-                    value={formState.email}
+                    value={formData.email}
                     onChange={handleChange}
-                    className={`w-full bg-gray-800/50 border ${
-                      errors.email ? "border-red-500" : "border-gray-700"
-                    } rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all`}
+                    required
+                    className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                     placeholder="your.email@example.com"
                   />
-                  {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                  )}
                 </div>
               </div>
 
@@ -260,28 +210,17 @@ export default function Contact() {
                   <textarea
                     id="message"
                     name="message"
-                    value={formState.message}
+                    value={formData.message}
                     onChange={handleChange}
+                    required
                     rows={5}
-                    className={`w-full bg-gray-800/50 border ${
-                      errors.message ? "border-red-500" : "border-gray-700"
-                    } rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all`}
+                    className="w-full bg-gray-800/50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                     placeholder="Your message..."
                   />
                   <div className="flex justify-between items-center mt-1">
-                    {errors.message ? (
-                      <p className="text-red-500 text-sm">{errors.message}</p>
-                    ) : (
-                      <div></div> // Empty div for spacing
-                    )}
-                    <span
-                      className={`text-sm ${
-                        charCount > MAX_MESSAGE_LENGTH * 0.9
-                          ? "text-amber-500"
-                          : "text-gray-400"
-                      }`}
-                    >
-                      {charCount}/{MAX_MESSAGE_LENGTH}
+                    <div></div>
+                    <span className="text-sm text-gray-400">
+                      {formData.message.length}/500
                     </span>
                   </div>
                 </div>
@@ -289,15 +228,13 @@ export default function Contact() {
 
               <button
                 type="submit"
-                disabled={status === SubmissionStatus.SUBMITTING}
-                className={`w-full py-3 px-6 rounded-lg font-medium text-white transition-all ${
-                  status === SubmissionStatus.SUBMITTING
-                    ? "bg-gray-700 cursor-not-allowed"
-                    : "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+                disabled={isSubmitting}
+                className={`w-full py-3 px-6 rounded-lg font-medium text-white transition-all bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 flex justify-center items-center ${
+                  isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
-                {status === SubmissionStatus.SUBMITTING ? (
-                  <span className="flex items-center justify-center">
+                {isSubmitting ? (
+                  <>
                     <svg
                       className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                       xmlns="http://www.w3.org/2000/svg"
@@ -319,28 +256,15 @@ export default function Contact() {
                       ></path>
                     </svg>
                     Sending...
-                  </span>
+                  </>
                 ) : (
                   "Send Message"
                 )}
               </button>
-
-              {status === SubmissionStatus.SUCCESS && (
-                <div className="mt-4 p-3 bg-green-900/50 border border-green-700 rounded-lg text-green-400 text-center animate-fadeIn">
-                  <p>Thank you! Your message has been sent successfully.</p>
-                </div>
-              )}
-
-              {status === SubmissionStatus.ERROR && (
-                <div className="mt-4 p-3 bg-red-900/50 border border-red-700 rounded-lg text-red-400 text-center animate-fadeIn">
-                  Sorry, there was an error sending your message. Please try
-                  again.
-                </div>
-              )}
             </form>
           </div>
 
-          {/* Contact Information */}
+          {/* Contact Information - keeping the rest of your component the same */}
           <div
             className={`space-y-8 transition-all duration-700 delay-500 ${
               isVisible
