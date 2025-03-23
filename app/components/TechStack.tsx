@@ -104,7 +104,7 @@ function TechStack() {
 
   return (
     <section
-      className="flex relative h-screen items-center justify-center flex-col"
+      className="flex relative h-[800px] items-center justify-center flex-col"
       id="tech-stack"
     >
       {/* Container with relative positioning */}

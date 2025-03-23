@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function About() {
   return (
-    <section className="py-20 px-4 bg-[#0A0A0A]" id="about">
+    <section className="py-10 px-4 bg-[#0A0A0A]" id="about">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row w-full gap-12 items-stretch">
           <div className="w-full md:w-2/5 flex items-center justify-center">
