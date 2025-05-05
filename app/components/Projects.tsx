@@ -28,7 +28,7 @@ export default function Projects() {
         "A website for public transport in Bratislava. Helps users find eco-friendly routes and reduce carbon footprint.",
       image: "/images/go-eco.png", // Project screenshot
       url: "https://hajdu.live",
-      github: "https://github.com/phlst/goeco",
+      github: "https://github.com/Hajdudev/goeco",
       stack: [
         { name: "React", icon: "/images/stack/react.svg" },
         { name: "Node.js", icon: "/images/stack/nodejs.svg" },
@@ -43,7 +43,7 @@ export default function Projects() {
       title: "Real Estate Web",
       description: "A website for searching houses and flats",
       image: "/images/realestate.png",
-      github: "https://github.com/phlst/goeco",
+      github: "https://github.com/Hajdudev/goeco",
       url: "https://web-real-estate-eta.vercel.app/",
       stack: [
         { name: "React", icon: "/images/stack/react.svg" },
@@ -60,7 +60,7 @@ export default function Projects() {
         "My personal portfolio showcasing projects and skills with interactive elements and animations.",
       image: "/images/portfolio.png",
       url: "https://hajdupeter.com",
-      github: "https://github.com/phlst/portfolio",
+      github: "https://github.com/Hajdudev/portfolio",
       stack: [
         { name: "React", icon: "/images/stack/react.svg" },
         { name: "Next.js", icon: "/images/stack/nextjs.svg" },
@@ -75,7 +75,7 @@ export default function Projects() {
       description: "A messaging app to learn authorisation and websocket ",
       image: "/images/next-chat.png", // Project screenshot
       url: "https://next-chat-psi-nine.vercel.app",
-      github: "https://github.com/phlst/NextChat",
+      github: "https://github.com/Hajdudev/NextChat",
       stack: [
         { name: "React", icon: "/images/stack/react.svg" },
         { name: "Appwrite", icon: "/images/stack/appwrite.svg" },
@@ -90,7 +90,7 @@ export default function Projects() {
       description: "Chess website made using react completetly from scratch",
       image: "/images/reactChess.png", // Project screenshot
       url: "https://react-chess-three.vercel.app/",
-      github: "https://github.com/phlst/ReactChess",
+      github: "https://github.com/Hajdudev/ReactChess",
       stack: [
         { name: "React", icon: "/images/stack/react.svg" },
         { name: "Node.js", icon: "/images/stack/nodejs.svg" },

@@ -19,7 +19,7 @@ export default function Contact() {
 
   // Handle form input changes
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -89,7 +89,7 @@ export default function Contact() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     const section = document.getElementById("contact");
@@ -344,7 +344,7 @@ export default function Contact() {
                 </h4>
                 <div className="flex space-x-4">
                   <a
-                    href="https://github.com/phlst"
+                    href="https://github.com/Hajdudev"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-gray-800 p-3 rounded-full hover:bg-gray-700 transition-colors"
