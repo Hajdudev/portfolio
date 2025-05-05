@@ -38,17 +38,50 @@ export default function Projects() {
         { name: "TypeScript", icon: "/images/stack/typescript.svg" },
       ],
     },
+
+    {
+      title: "Real Estate Web",
+      description: "A website for searching houses and flats",
+      image: "/images/realestate.png",
+      github: "https://github.com/phlst/goeco",
+      url: "https://web-real-estate-eta.vercel.app/",
+      stack: [
+        { name: "React", icon: "/images/stack/react.svg" },
+        { name: "Next.js", icon: "/images/stack/nextjs.svg" },
+        { name: "TypeScript", icon: "/images/stack/typescript.svg" },
+        { name: "GSAP", icon: "/images/stack/gsap.svg" },
+        { name: "Tailwind CSS", icon: "/images/stack/tailwindcss.svg" },
+        { name: "Appwrite", icon: "/images/stack/appwrite.svg" },
+      ],
+    },
     {
       title: "Portfolio Website",
       description:
         "My personal portfolio showcasing projects and skills with interactive elements and animations.",
       image: "/images/portfolio.png",
       url: "https://hajdupeter.com",
+      github: "https://github.com/phlst/portfolio",
       stack: [
         { name: "React", icon: "/images/stack/react.svg" },
         { name: "Next.js", icon: "/images/stack/nextjs.svg" },
         { name: "TypeScript", icon: "/images/stack/typescript.svg" },
         { name: "GSAP", icon: "/images/stack/gsap.svg" },
+        { name: "Tailwind CSS", icon: "/images/stack/tailwindcss.svg" },
+      ],
+    },
+
+    {
+      title: "NextChat",
+      description: "A messaging app to learn authorisation and websocket ",
+      image: "/images/next-chat.png", // Project screenshot
+      url: "https://next-chat-psi-nine.vercel.app",
+      github: "https://github.com/phlst/NextChat",
+      stack: [
+        { name: "React", icon: "/images/stack/react.svg" },
+        { name: "Appwrite", icon: "/images/stack/appwrite.svg" },
+        { name: "Node.js", icon: "/images/stack/nodejs.svg" },
+        { name: "Nextjs", icon: "/images/stack/nextjs.svg" },
+        { name: "TypeScript", icon: "/images/stack/typescript.svg" },
         { name: "Tailwind CSS", icon: "/images/stack/tailwindcss.svg" },
       ],
     },

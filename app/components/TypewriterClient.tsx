@@ -8,11 +8,11 @@ export default function TypewriterClient() {
         sequence={[
           "I build responsive front-end with React and Next.js.",
           1000,
-          "I build responsive front-end with React and Next.js. Backend expert with Node.js and Express.",
+          "I build responsive front-end with React and Next.js. Backend expert with Node.js and Express and GoLang.",
           1000,
-          "I build responsive front-end with React and Next.js. Backend expert with Node.js and Express. Database management with PostgreSQL.",
+          "I build responsive front-end with React and Next.js. Backend expert with Node.js and Express and GoLang. Database management with PostgreSQL.",
           1000,
-          "I build responsive front-end with React and Next.js. Backend expert with Node.js and Express. Database management with PostgreSQL. Clean code enthusiast, always learning.",
+          "I build responsive front-end with React and Next.js. Backend expert with Node.js and Express and GoLang. Database management with PostgreSQL. Clean code enthusiast, always learning.",
           1000,
         ]}
         speed={50}

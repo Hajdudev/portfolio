@@ -31,6 +31,14 @@ function TechStack() {
       Icon: "/images/stack/nextjs.svg",
     },
     {
+      Name: "Appwrite",
+      Icon: "/images/stack/appwrite.svg",
+    },
+    {
+      Name: "Go",
+      Icon: "/images/stack/go.svg",
+    },
+    {
       Name: "Tailwind CSS",
       Icon: "/images/stack/tailwindcss.svg",
     },
