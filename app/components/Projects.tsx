@@ -3,24 +3,21 @@
 import { useState } from "react";
 import Image from "next/image";
 
-// Define types for our stack items
 type TechStackItem = {
   name: string;
-  icon: string; // path to the icon
+  icon: string;
 };
 
-// Define a Project type
 type Project = {
   title: string;
   description: string;
   image: string;
   url: string;
-  github?: string; // Optional GitHub URL
+  github?: string;
   stack: TechStackItem[];
 };
 
 export default function Projects() {
-  // Example project data
   const projects: Project[] = [
     {
       title: "GoEco",
@@ -31,27 +28,26 @@ export default function Projects() {
       github: "https://github.com/Hajdudev/goeco",
       stack: [
         { name: "React", icon: "/images/stack/react.svg" },
-        { name: "Node.js", icon: "/images/stack/nodejs.svg" },
         { name: "Next.js", icon: "/images/stack/nextjs.svg" },
-        { name: "Supabase", icon: "/images/stack/supabase.svg" },
         { name: "Tailwind CSS", icon: "/images/stack/tailwindcss.svg" },
         { name: "TypeScript", icon: "/images/stack/typescript.svg" },
+        { name: "Tanstack Query", icon: "/images/stack/tanstack.svg" },
+        { name: "Go", icon: "/images/stack/golang.svg" },
       ],
     },
 
     {
-      title: "Real Estate Web",
-      description: "A website for searching houses and flats",
-      image: "/images/realestate.png",
-      github: "https://github.com/Hajdudev/goeco",
-      url: "https://web-real-estate-eta.vercel.app/",
+      title: "hajdu.dev",
+      description: "A web agency website with really cool animations",
+      image: "/images/agency.png",
+      github: "https://github.com/Hajdudev/hajdu",
+      url: "https://hajdu.dev/",
       stack: [
         { name: "React", icon: "/images/stack/react.svg" },
         { name: "Next.js", icon: "/images/stack/nextjs.svg" },
         { name: "TypeScript", icon: "/images/stack/typescript.svg" },
         { name: "GSAP", icon: "/images/stack/gsap.svg" },
         { name: "Tailwind CSS", icon: "/images/stack/tailwindcss.svg" },
-        { name: "Appwrite", icon: "/images/stack/appwrite.svg" },
       ],
     },
     {

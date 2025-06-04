@@ -14,6 +14,7 @@ function TechStack() {
       Name: "CSS",
       Icon: "/images/stack/css.svg",
     },
+    { Name: "Tanstack Query", Icon: "/images/stack/tanstack.svg" },
     {
       Name: "JavaScript",
       Icon: "/images/stack/javascript.svg",
