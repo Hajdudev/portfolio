@@ -23,7 +23,7 @@ export default function Page() {
           window.locomotiveScroll = locomotiveScroll;
         } else {
           console.error(
-            "LocomotiveScroll instance is missing required methods"
+            "LocomotiveScroll instance is missing required methods",
           );
         }
       } catch (error) {
@@ -47,8 +47,8 @@ export default function Page() {
 
           <h2 className="pt-4 text-gray-400 lg:text-2xl text-lg">
             I am Peter Hajdu a 17year old FullStack Developer based in
-            <span className="text-blue-600"> Slo</span>
-            <span className="text-white text-shadow">va</span>
+            <span className="text-white"> Slo</span>
+            <span className="text-blue-500 text-shadow">va</span>
             <span className="text-red-600">kia</span>
           </h2>
 
