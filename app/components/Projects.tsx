@@ -25,7 +25,7 @@ export default function Projects() {
         "A website for public transport in Bratislava. Helps users find eco-friendly routes and reduce carbon footprint.",
       image: "/images/go-eco.png", // Project screenshot
       url: "https://hajdu.live",
-      github: "https://github.com/Hajdudev/goeco",
+      github: "https://github.com/Hajdudev/go-eco-v2",
       stack: [
         { name: "React", icon: "/images/stack/react.svg" },
         { name: "Next.js", icon: "/images/stack/nextjs.svg" },
