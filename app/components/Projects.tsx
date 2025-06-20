@@ -66,21 +66,21 @@ export default function Projects() {
       ],
     },
 
-    {
-      title: "NextChat",
-      description: "A messaging app to learn authorisation and websocket ",
-      image: "/images/next-chat.png", // Project screenshot
-      url: "https://next-chat-psi-nine.vercel.app",
-      github: "https://github.com/Hajdudev/NextChat",
-      stack: [
-        { name: "React", icon: "/images/stack/react.svg" },
-        { name: "Appwrite", icon: "/images/stack/appwrite.svg" },
-        { name: "Node.js", icon: "/images/stack/nodejs.svg" },
-        { name: "Nextjs", icon: "/images/stack/nextjs.svg" },
-        { name: "TypeScript", icon: "/images/stack/typescript.svg" },
-        { name: "Tailwind CSS", icon: "/images/stack/tailwindcss.svg" },
-      ],
-    },
+    // {
+    //   title: "NextChat",
+    //   description: "A messaging app to learn authorisation and websocket ",
+    //   image: "/images/next-chat.png", // Project screenshot
+    //   url: "https://next-chat-psi-nine.vercel.app",
+    //   github: "https://github.com/Hajdudev/NextChat",
+    //   stack: [
+    //     { name: "React", icon: "/images/stack/react.svg" },
+    //     { name: "Appwrite", icon: "/images/stack/appwrite.svg" },
+    //     { name: "Node.js", icon: "/images/stack/nodejs.svg" },
+    //     { name: "Nextjs", icon: "/images/stack/nextjs.svg" },
+    //     { name: "TypeScript", icon: "/images/stack/typescript.svg" },
+    //     { name: "Tailwind CSS", icon: "/images/stack/tailwindcss.svg" },
+    //   ],
+    // },
     {
       title: "ReactChess",
       description: "Chess website made using react completetly from scratch",
